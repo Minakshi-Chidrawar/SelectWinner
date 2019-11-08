@@ -16,7 +16,13 @@ class NameController extends Controller
     {
         $names = Name::all();
 
-        return view('welcome', compact('names'));
+        //return view('welcome', compact('names'));
+        return view('selectWinner.index', compact('names'));
+    }
+
+    public function create()
+    {
+        return view('selectWinner.create');
     }
 
     /**
@@ -27,7 +33,7 @@ class NameController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        dd($request);
         $userId = $request->user_id;
         $user   =   User::updateOrCreate(['id' => $userId],
                     ['name' => $request->name]);
