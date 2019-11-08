@@ -13,3 +13,7 @@
 
 //Route::get('/', 'NameController@index');
 Route::resource('ajax-crud', 'NameController');
+
+Route::get('/', 'NameController@index');
+Route::get('create', 'NameController@create');
+Route::post('/', 'NameController@store')->name('store');
