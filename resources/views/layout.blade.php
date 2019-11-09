@@ -43,15 +43,17 @@
                 }
             });
 
-            $("#addName").click(function() {
+            //$("#addName").click(function() {
+            $('body').on('click', '#addName', function () {
                 $('#userForm').trigger("reset");
                 $('#titleForModal').html("Add New User");
-                $('#addNamemodal').modal('show');
-                //alert($("#userForm").length);
+                $('#addEditNamemodal').modal('show');
             });
 
-            $("#saveName").click(function() {
-                //alert($("#userForm").serialize());
+            $('body').on('click', '#saveName', function () {
+                var user_id = $(this).data('id');
+                var actionType = $('#saveName').val();
+
                 $.ajax({
                     data: $('#userForm').serialize(),
                     url: "{{ route('store') }}",
@@ -59,17 +61,34 @@
                     dataType: 'json',
                     success: function (data) {
                         var user = '<tr id="user_id_' + data.id + '"><td>' + data.name + '</td>';
-                        user += '<td><a href="javascript:void(0)" id="editName" data-id="' + data.id + '" class="btn btn-info"><span class="fa fa-pencil"></span></a></td>';
-                        user += '<td><a href="javascript:void(0)" id="deleteName" data-id="' + data.id + '" class="btn btn-danger"><span class="fa fa-minus"></span></a></td></tr>';
+                        user += '<td><a href="javascript:void(0)" id="editName" data-id="' + data.id + 'data-name=' + data.name + '" class="btn btn-info"><span class="fa fa-pencil"></span></a></td>';
+                        user += '<td><a href="javascript:void(0)" id="deleteName" data-id="' + data.id + 'data-name=' + data.name + '" class="btn btn-danger"><span class="fa fa-minus"></span></a></td></tr>';
 
                         $('#userForm').trigger("reset");
-                        $('#addNamemodal').modal('hide');
-                        $('#nameList').append(user);
+                        $('#addEditNameModal').modal('hide');                        
+
+                        if (actionType == "create-user") {
+                            $('#nameList').append(user);
+                        } else {
+                            $("#user_id_" + data.id).replaceWith(user);
+                        }
                     },
                     error: function (data) {
                         console.log('Error:', data);
                     }
                 });
+            });
+
+            $('body').on('click', '#editName', function () {
+                var user_id = $(this).data('id');
+                var user_name = $(this).data('name');
+                //alert($(this).data('id'));
+                //alert($(this).data('name'));
+                $('#titleForModal').html("Edit User");
+                $('#saveName').val("edit-user");
+                $('#addEditNameModal').modal('show');
+                $('#user_id').val(user_id);
+                $('#name').val(user_name);
             });
         });
     </script>
