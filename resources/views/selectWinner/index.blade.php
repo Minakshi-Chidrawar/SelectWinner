@@ -17,12 +17,12 @@
                         <tr id="user_id_{{ $name->id }}">
                             <td>{{ $name->name }}</td>
                             <td>
-                                <a href="javascript:void(0)" id="editName" data-id="{{ $name->id }}" class="btn btn-info">
+                                <a href="javascript:void(0)" id="editName" data-id="{{ $name->id }}" data-name="{{$name->name}}" class="btn btn-info">
                                     <span class="fa fa-pencil"></span>
                                 </a>
                             </td>
                             <td>
-                                <a href="javascript:void(0)" id="deleteName" data-id="{{ $name->id }}" class="btn btn-danger delete-user">
+                                <a href="javascript:void(0)" id="deleteName" data-id="{{ $name->id }}" data-name="{{$name->name}}" class="btn btn-danger delete-user">
                                     <span class="fa fa-minus"></span>
                                 </a>
                             </td>
