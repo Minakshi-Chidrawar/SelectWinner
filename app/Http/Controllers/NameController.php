@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Name;
+use Redirect, Response;
 use Illuminate\Http\Request;
 
 class NameController extends Controller
@@ -32,13 +33,15 @@ class NameController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        dd($request);
-        $userId = $request->user_id;
-        $user   =   User::updateOrCreate(['id' => $userId],
-                    ['name' => $request->name]);
+    {    
+        $name   =   Name::updateOrCreate(
+                    ['id' => $request->name_id],
+                    ['name' => $request->name]
+                );
+
+        //dd($name);
     
-        return Response::json($user);
+        return Response::json($name);
     }
 
     /**
