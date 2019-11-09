@@ -33,49 +33,16 @@ class NameController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {    
+    {   
+        $user_id = $request->user_id;
         $name   =   Name::updateOrCreate(
-                    ['id' => $request->name_id],
+                    ['id' => $user_id],
                     ['name' => $request->name]
                 );
 
         //dd($name);
     
         return Response::json($name);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Name  $name
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Name $name)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Name  $name
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Name $name)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Name  $name
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Name $name)
-    {
-        //
     }
 
     /**
