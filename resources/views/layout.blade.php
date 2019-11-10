@@ -43,11 +43,33 @@
                 }
             });
 
-            //$("#addName").click(function() {
-            $('body').on('click', '#addName', function () {
+            //$('body').on('click', '#addName', function () {
+            $("#addName").click(function() {
                 $('#userForm').trigger("reset");
                 $('#titleForModal').html("Add New User");
                 $('#addEditNamemodal').modal('show');
+            });
+
+            $('body').on('click', '#editName', function () {
+                var user_id = $(this).data('id');
+                var user_name = $(this).data('name');
+                //alert($(this).data('id'));
+                //alert($(this).data('name'));
+                $('#titleForModal').html("Edit User");
+                $('#saveName').val("edit-user");
+                $('#addEditNameModal').modal('show');
+                $('#user_id').val(user_id);
+                $('#name').val(user_name);
+            });
+
+               //delete user login
+            $('body').on('click', '.delete-user', function () {
+                var user_id = $(this).data("id");
+                var user_name = $(this).data('name');
+                var deleteText = 'Are you Sure you want to delete ' + user_name + ' ?';
+                $('#user_id').val(user_id); 
+                $('.deleteContent').text(deleteText);
+                $('#deleteModal').modal('show');
             });
 
             $('body').on('click', '#saveName', function () {
@@ -79,16 +101,20 @@
                 });
             });
 
-            $('body').on('click', '#editName', function () {
-                var user_id = $(this).data('id');
-                var user_name = $(this).data('name');
-                //alert($(this).data('id'));
-                //alert($(this).data('name'));
-                $('#titleForModal').html("Edit User");
-                $('#saveName').val("edit-user");
-                $('#addEditNameModal').modal('show');
-                $('#user_id').val(user_id);
-                $('#name').val(user_name);
+            $('body').on('click', '#deleteUser', function() {
+                var user_id = $('#user_id').val();
+                $.ajax({
+                    type: 'delete',
+                    url: '/'+user_id,
+                    data: {
+                        '_token': $('input[name=_token]').val(),
+                        'id': user_id
+                    },
+                    success: function(data) {
+                        $("#user_id_" + user_id).remove();
+                        $('#deleteModal').modal('hide');
+                    }
+                });
             });
         });
     </script>
