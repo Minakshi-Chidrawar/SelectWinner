@@ -51,8 +51,10 @@ class NameController extends Controller
      * @param  \App\Name  $name
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Name $name)
+    public function destroy($id)
     {
-        //
+        $name = Name::where('id', $id)->delete();
+   
+        return Response::json($name);
     }
 }
