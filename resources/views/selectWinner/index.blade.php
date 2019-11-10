@@ -6,7 +6,7 @@
     <div class="container py-4">
         <div class="row mb-3">
             <div class="col-12">
-                <button type="submit" class="btn btn-success mb-2" id="addName">Add User</button>
+                <button type="submit" class="btn btn-success mb-2 addName" id="addName">Add User</button>
             </div>
         </div>
         <div class="row">
@@ -35,4 +35,5 @@
     </div>
 
     @include('selectWinner.createModal')
+    @include('selectWinner.deleteModal')
 @endsection
