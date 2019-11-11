@@ -12,8 +12,10 @@
 */
 
 //Route::get('/', 'NameController@index');
-Route::resource('ajax-crud', 'NameController');
+//Route::resource('ajax-crud', 'NameController');
+//Route::resource('/', 'NameController');
 
 Route::get('/', 'NameController@index');
 Route::get('create', 'NameController@create');
 Route::post('/', 'NameController@store')->name('store');
+Route::delete('/{id}', 'NameController@destroy')->name('delete');

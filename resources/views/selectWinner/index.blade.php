@@ -5,8 +5,13 @@
 @section('content')
     <div class="container py-4">
         <div class="row mb-3">
-            <div class="col-12">
+            <div class="col-6">
                 <button type="submit" class="btn btn-success mb-2 addName" id="addName">Add User</button>
+            </div>
+            <div class="col-6">
+                @if(count($names) > 2)
+                    <button type="submit" class="btn btn-success mb-2 selectWinner" id="selectWinner">Select Winner</button>
+                @endif
             </div>
         </div>
         <div class="row">
