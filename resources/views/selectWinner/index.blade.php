@@ -35,10 +35,14 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="col-6 col-offset-2">
+                <div class="winnerList"></div>
             </div> 
         </div>
     </div>
 
     @include('selectWinner.createModal')
     @include('selectWinner.deleteModal')
+    @include('selectWinner.numberToSelectWinner')
 @endsection
