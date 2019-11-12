@@ -9,12 +9,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="userForm" name="selectWinnerForm" class="form-horizontal">
+                <form id="selectWinnerForm" name="selectWinnerForm" class="col-form-label">
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Enter the numbers to select winners</label>
-                        <div class="col-sm-12">
-                            <input type="number" class="form-control" id="winner" name="winner" placeholder="Enter Name" value="" maxlength="50" required="">
-                        </div>
+                        <label for="winner" class="control-label">Enter the numbers to select winners</label>
+                        <input type="number" class="form-control" id="winner" name="winner" placeholder="Enter Number" min="1" value="" required="">
                     </div>
                 </form>
             </div>
