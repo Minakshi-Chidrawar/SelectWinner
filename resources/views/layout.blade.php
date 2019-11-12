@@ -116,6 +116,12 @@
                     }
                 });
             });
+
+            $('body').on('click', '#selectWinner', function () {
+                $('#selectWinnerForm').trigger("reset");
+                $('#titleModal').html("Add number to select for the winners");
+                $('#selectWinnerModal').modal('show');
+            });
         });
     </script>
 </html>
