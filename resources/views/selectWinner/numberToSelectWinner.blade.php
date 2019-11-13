@@ -11,13 +11,15 @@
             <div class="modal-body">
                 <form id="selectWinnerForm" name="selectWinnerForm" class="col-form-label">
                     <div class="form-group">
-                        <label for="winner" class="control-label">Enter the numbers to select winners</label>
-                        <input type="number" class="form-control" id="winner" name="winner" placeholder="Enter Number" min="1" value="" required="">
+                        <label for="numberOfWinners" class="control-label">Enter the numbers to select winners</label>
+                        <input type="number" class="form-control" id="numberOfWinners" name="numberOfWinners" placeholder="Enter Number" min="1" value="" required="">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="numberToSelect" value="create">Select Winner</button>
+                <!-- a href="{{ route('show')}}"> -->
+                    <button type="submit" class="btn btn-primary" id="numberToSelect" value="create">Select Winner</button>
+                <!-- /a> -->
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
