@@ -14,12 +14,15 @@ class SelectWinnersController extends Controller
      * @param  \App\Name  $name
      * @return \Illuminate\Http\Response
      */
-    public function show($numberOfWinners)
+    public function show(Request $request)
     {
-        dd($numberOfWinners);
-        $names = Name::inRandomOrder()->take($request->numberOfWinners)->get();
+        //dd($request->numberOfWinners);
+        $names = Name::all();
+        $winnerNames = Name::inRandomOrder()->take($request->numberOfWinners)->get();
 
-        //return view('welcome', compact('names'));       
-        return response()->json($names);
+        //dd($names);
+        //return Response::json($winnerNames);
+        return view('selectWinner.index', compact('names', 'winnerNames'));
+        //return redirect::route('index', ['names' => $names, 'winnerNames' => $winnerNames]);
     }
 }
