@@ -16,9 +16,9 @@ class NameController extends Controller
     public function index()
     {
         $names = Name::all();
+        $winnerNames = Name::inRandomOrder()->take(0)->get();
 
-        //return view('welcome', compact('names'));
-        return view('selectWinner.index', compact('names'));
+        return view('selectWinner.index', compact('names', 'winnerNames'));
     }
 
     public function create()
@@ -39,8 +39,6 @@ class NameController extends Controller
                     ['id' => $user_id],
                     ['name' => $request->name]
                 );
-
-        //dd($name);
     
         return Response::json($name);
     }
