@@ -1,3 +1,20 @@
 .table-borderless {
     border: 0px;
 }
+
+.winner-heading {
+    color: green;
+    word-spacing: 0%;
+}
+
+.user-list {
+    color: #1e1379;
+}
+
+.fa {
+    font-size: 10px;
+}
+
+button > a {
+    color: white;
+}
