@@ -20,5 +20,5 @@ Route::get('create', 'NameController@create');
 Route::post('/', 'NameController@store')->name('store');
 Route::delete('/{id}', 'NameController@destroy')->name('delete');
 
-//Route::get('/{numberOfWinners}', 'SelectWinnersController@show')->name('show');
-Route::get('/{numberOfWinners}', ['as' => 'show', 'uses' => 'SelectWinnersController@show']);
+Route::get('winners', 'SelectWinnersController@winners')->name('winners');
+Route::get('clear', 'SelectWinnersController@clear');
