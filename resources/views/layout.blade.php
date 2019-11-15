@@ -43,53 +43,34 @@
                 }
             });
 
-            //$('body').on('click', '#addName', function () {
-            $("#addName").click(function() {
+            $(document).on('click', '#add', function(){
+                //alert("hello");
                 $('#userForm').trigger("reset");
-                $('#titleForModal').html("Add New User");
-                $('#addEditNamemodal').modal('show');
-            });
-
-            $('body').on('click', '#editName', function () {
-                var user_id = $(this).data('id');
-                var user_name = $(this).data('name');
-                //alert($(this).data('id'));
-                //alert($(this).data('name'));
-                $('#titleForModal').html("Edit User");
-                $('#saveName').val("edit-user");
+                $('#saveName').val("create");
+                $('#titleForModal').html("Add New User");                
                 $('#addEditNameModal').modal('show');
-                $('#user_id').val(user_id);
-                $('#name').val(user_name);
             });
 
-               //delete user login
-            $('body').on('click', '.delete-user', function () {
-                var user_id = $(this).data("id");
-                var user_name = $(this).data('name');
-                var deleteText = 'Are you Sure you want to delete ' + user_name + ' ?';
-                $('#user_id').val(user_id); 
-                $('.deleteContent').text(deleteText);
-                $('#deleteModal').modal('show');
-            });
-
-            $('body').on('click', '#saveName', function () {
+            $(document).on('click', '#saveName', function () {
                 var user_id = $(this).data('id');
                 var actionType = $('#saveName').val();
-
+                alert($('#userForm').serialize());
                 $.ajax({
                     data: $('#userForm').serialize(),
                     url: "{{ route('store') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function (data) {
-                        var user = '<tr id="user_id_' + data.id + '"><td>' + data.name + '</td>';
-                        user += '<td><a href="javascript:void(0)" id="editName" data-id="' + data.id + 'data-name=' + data.name + '" class="btn btn-info"><span class="fa fa-pencil"></span></a></td>';
-                        user += '<td><a href="javascript:void(0)" id="deleteName" data-id="' + data.id + 'data-name=' + data.name + '" class="btn btn-danger"><span class="fa fa-minus"></span></a></td></tr>';
+                        alert("id is :" + data.id);
+                        alert("Name is :" + data.name);
+                        alert(actionType);
 
+                        var user = '<tr id="user_id_' + data.id + '"><td>' + data.name + '</td>';
+                        user += '<td><a href="javascript:void(0)" id="editName" data-id="' + data.id + '" data-name="' + data.name + '" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a> ';
+                        user += '<a href="javascript:void(0)" id="deleteName" data-id="' + data.id + '" data-name="' + data.name + '" class="btn btn-danger btn-sm delete-user"><span class="fa fa-minus"></span></a></td></tr>';
                         $('#userForm').trigger("reset");
                         $('#addEditNameModal').modal('hide');                        
-
-                        if (actionType == "create-user") {
+                        if (actionType == "create") {
                             $('#nameList').append(user);
                         } else {
                             $("#user_id_" + data.id).replaceWith(user);
@@ -101,7 +82,28 @@
                 });
             });
 
-            $('body').on('click', '#deleteUser', function() {
+            $(document).on('click', '#editName', function () {
+                var user_id = $(this).data('id');
+                var user_name = $(this).data('name');
+                $('#userForm').trigger("reset");
+                $('#titleForModal').html("Edit User");
+                $('#saveName').val("edit-user");
+                $('#addEditNameModal').modal('show');
+                $('#user_id').val(user_id);
+                $('#name').val(user_name);
+            });
+
+            //delete user name
+            $(document).on('click', '.delete-user', function () {
+                var user_id = $(this).data("id");
+                var user_name = $(this).data('name');
+                var deleteText = 'Are you Sure you want to delete ' + user_name + ' ?';
+                $('#user_id').val(user_id); 
+                $('.deleteContent').text(deleteText);
+                $('#deleteModal').modal('show');
+            });
+
+            $(document).on('click', '#deleteUser', function() {
                 var user_id = $('#user_id').val();
                 $.ajax({
                     type: 'delete',
@@ -117,9 +119,9 @@
                 });
             });
 
-            $('body').on('click', '#selectWinner', function () {
+            $(document).on('click', '#selectWinner', function () {
                 $('#selectWinnerForm').trigger("reset");
-                $('#titleModal').html("Add number to select for the winners");
+                $('#titleModal').html("Number to select for the winners");                
                 $('#selectWinnerModal').modal('show');
             });
         });
