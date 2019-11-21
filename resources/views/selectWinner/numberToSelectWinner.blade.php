@@ -1,5 +1,5 @@
 
-<form action="winners" method="get">
+<form action="{{ route('winners') }}" method="get">
     @csrf
     <div class="modal fade" id="selectWinnerModal" aria-hidden="true">
         <div class="modal-dialog">
