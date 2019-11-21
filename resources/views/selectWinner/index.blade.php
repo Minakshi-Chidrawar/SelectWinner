@@ -13,8 +13,8 @@
                 @endif
 
                 @if(count($winnerNames ?? '') > 0)
-                    <button type="submit" class="btn btn-success mb-2 selectWinner" id="clearWinners">
-                        <a href="clear">Reset winners list</a>
+                    <button type="submit" class="btn btn-success mb-2" id="clearWinners">
+                        <a href="clear" class="link">Reset Winners List</a>
                     </button>
                 @endif
             </div>
@@ -43,10 +43,10 @@
                     </table>
                 @endif
             </div>
-            <div class="col-6 offset-1">
+            <div class="col-6 offset-1 mt-5">
                 @if(count($winnerNames) > 0)
                     <div class="winnerList shadow p-3 mb-5 bg-white rounded">
-                        <h2 class="winner-heading">Winners are</h2>
+                        <h2 class="winner-heading">Winners are:</h2>
                         <table class="table table-borderless table-hover">
                             @foreach($winnerNames as $winnerName)
                                 <tr><td><strong>{{ $winnerName->name }}</strong></td></tr>
