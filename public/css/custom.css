@@ -4,11 +4,12 @@
 
 .winner-heading {
     color: green;
-    word-spacing: 0%;
+    font-family: 'Courgette', cursive;
 }
 
 .user-list {
-    color: #1e1379;
+    color: #0c0546;
+    font-family: 'Courgette', cursive;
 }
 
 .fa {
@@ -17,4 +18,26 @@
 
 button > a {
     color: white;
+}
+
+.shadow {
+    box-shadow: 0 .5rem 1rem green!important;
+}
+
+h1 {
+    font-family: 'Courgette', cursive;
+    color: #0c0546;
+}
+
+.table td {
+    padding: 0.25rem;
+}
+
+.link { 
+    color: white; 
+} 
+
+.link:hover {
+    color: white;
+    text-decoration: none;
 }
