@@ -10,7 +10,7 @@
         <title>Select Winners </title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Nunito&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
@@ -21,14 +21,20 @@
     </head>
     <body>
 
-        <div class="container mt-5">
-            <h3>Select Winners</h3>
+        <div class="container mt-3">
+            <h1>Select Winners</h1>
         </div>
 
         <div class="container">
             @if(session()->has('message'))
                 <div class="alert alert-success" role="alert">
                     <strong>Success:</strong> {{ session()->get('message') }}
+                </div>
+            @endif
+
+            @if(Session::has('fail'))
+                <div class="alert alert-danger">
+                {{Session::get('fail')}}
                 </div>
             @endif
 
@@ -44,7 +50,6 @@
             });
 
             $(document).on('click', '#add', function(){
-                //alert("hello");
                 $('#userForm').trigger("reset");
                 $('#saveName').val("create");
                 $('#titleForModal').html("Add New User");                
@@ -54,27 +59,13 @@
             $(document).on('click', '#saveName', function () {
                 var user_id = $(this).data('id');
                 var actionType = $('#saveName').val();
-                alert($('#userForm').serialize());
                 $.ajax({
                     data: $('#userForm').serialize(),
                     url: "{{ route('store') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function (data) {
-                        alert("id is :" + data.id);
-                        alert("Name is :" + data.name);
-                        alert(actionType);
-
-                        var user = '<tr id="user_id_' + data.id + '"><td>' + data.name + '</td>';
-                        user += '<td><a href="javascript:void(0)" id="editName" data-id="' + data.id + '" data-name="' + data.name + '" class="btn btn-info btn-sm"><span class="fa fa-pencil"></span></a> ';
-                        user += '<a href="javascript:void(0)" id="deleteName" data-id="' + data.id + '" data-name="' + data.name + '" class="btn btn-danger btn-sm delete-user"><span class="fa fa-minus"></span></a></td></tr>';
-                        $('#userForm').trigger("reset");
-                        $('#addEditNameModal').modal('hide');                        
-                        if (actionType == "create") {
-                            $('#nameList').append(user);
-                        } else {
-                            $("#user_id_" + data.id).replaceWith(user);
-                        }
+                        window.location.reload(true);
                     },
                     error: function (data) {
                         console.log('Error:', data);
@@ -97,7 +88,10 @@
             $(document).on('click', '.delete-user', function () {
                 var user_id = $(this).data("id");
                 var user_name = $(this).data('name');
-                var deleteText = 'Are you Sure you want to delete ' + user_name + ' ?';
+                    deleteText  = "Are you Sure you want to delete";
+                    deleteText += " <strong>";
+                    deleteText += user_name;
+                    deleteText += "</strong> ?";
                 $('#user_id').val(user_id); 
                 $('.deleteContent').text(deleteText);
                 $('#deleteModal').modal('show');
