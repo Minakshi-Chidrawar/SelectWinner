@@ -13,7 +13,7 @@
                 <div class="modal-body">
                     <form id="selectWinnerForm" name="selectWinnerForm" class="col-form-label">
                         <div class="form-group">
-                            <label for="numberOfWinners" class="control-label">Enter the numbers to select winners</label>
+                            <label for="numberOfWinners" class="control-label"></label>
                             <input type="number" class="form-control" id="numberOfWinners" name="numberOfWinners" placeholder="Enter Number" min="1" value="" required="">
                         </div>
                     </form>
