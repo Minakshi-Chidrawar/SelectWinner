@@ -88,12 +88,9 @@
             $(document).on('click', '.delete-user', function () {
                 var user_id = $(this).data("id");
                 var user_name = $(this).data('name');
-                    deleteText  = "Are you Sure you want to delete";
-                    deleteText += " <strong>";
-                    deleteText += user_name;
-                    deleteText += "</strong> ?";
+                var deleteText  = '<p>Are you sure you want to delete <strong>' + user_name  + '</strong>?</p>';
                 $('#user_id').val(user_id); 
-                $('.deleteContent').text(deleteText);
+                $('.deleteContent').html(deleteText);
                 $('#deleteModal').modal('show');
             });
 
@@ -109,13 +106,14 @@
                     success: function(data) {
                         $("#user_id_" + user_id).remove();
                         $('#deleteModal').modal('hide');
+                        window.location.reload(true);
                     }
                 });
             });
 
             $(document).on('click', '#selectWinner', function () {
                 $('#selectWinnerForm').trigger("reset");
-                $('#titleModal').html("Number to select for the winners");                
+                $('#titleModal').html("Enter the number to select the winners");                
                 $('#selectWinnerModal').modal('show');
             });
         });
